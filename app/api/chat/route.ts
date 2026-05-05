@@ -1,8 +1,8 @@
-import OpenAI from 'openai'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 import { cookies } from 'next/headers'
 
 type Message = {
-  role: 'user' | 'assistant' | 'system'
+  role: 'user' | 'assistant'
   content: string
 }
 
@@ -15,30 +15,29 @@ export async function POST(req: Request) {
 
   const { messages }: { messages: Message[] } = await req.json()
 
-  // ビルド時に実行されないようハンドラー内で初期化
-  const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-  })
+  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
+  const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' })
 
-  const stream = await openai.chat.completions.create({
-    model: 'gpt-4o-mini',
-    messages,
-    stream: true,
-  })
+  // Gemini はhistoryと最後のメッセージを分けて渡す
+  const history = messages.slice(0, -1).map((m) => ({
+    role: m.role === 'assistant' ? ('model' as const) : ('user' as const),
+    parts: [{ text: m.content }],
+  }))
+  const lastMessage = messages[messages.length - 1].content
+
+  const chat = model.startChat({ history })
+  const result = await chat.sendMessageStream(lastMessage)
 
   const encoder = new TextEncoder()
   const readable = new ReadableStream({
     async start(controller) {
-      for await (const chunk of stream) {
-        const content = chunk.choices[0]?.delta?.content
-        if (content) {
-          controller.enqueue(encoder.encode(content))
+      for await (const chunk of result.stream) {
+        const text = chunk.text()
+        if (text) {
+          controller.enqueue(encoder.encode(text))
         }
       }
       controller.close()
-    },
-    async cancel() {
-      await stream.controller.abort()
     },
   })
 
