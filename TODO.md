@@ -2,38 +2,39 @@
 
 ## Phase 1: プロジェクトセットアップ
 
-- [ ] Next.js プロジェクト作成
+- [x] Next.js プロジェクト作成
   ```bash
   npx create-next-app@latest ai-chat --typescript --tailwind --app
   ```
-- [ ] 依存パッケージのインストール
+- [x] 依存パッケージのインストール
   ```bash
   npm install openai
   npm install @types/node
   ```
-- [ ] `.env.local` ファイルを作成し環境変数を設定
+- [x] `.env.local` ファイルを作成し環境変数を設定
   - `OPENAI_API_KEY`
   - `AUTH_USERNAME`
   - `AUTH_PASSWORD`
-- [ ] `.env.local` を `.gitignore` に追加されていることを確認
-- [ ] Gitリポジトリ初期化 & GitHubにリポジトリ作成 & 初回push
+- [x] `.env.local` を `.gitignore` に追加されていることを確認
+- [x] Gitリポジトリ初期化 & 初回コミット完了
+- [x] GitHubにリポジトリ作成 & push (https://github.com/nachimochi37/ai-chat)
 
 ---
 
 ## Phase 2: 認証機能
 
-- [ ] `/api/auth/route.ts` の実装
+- [x] `/api/auth/route.ts` の実装
   - POST リクエストでID・PWを受け取る
   - 環境変数と照合してtrue/falseを返す
-- [ ] `LoginForm.tsx` コンポーネントの実装
+- [x] `LoginForm.tsx` コンポーネントの実装
   - ユーザーID・パスワードの入力フォーム
   - バリデーション（空欄チェック）
   - エラーメッセージ表示
-- [ ] ログインページ `app/page.tsx` の実装
+- [x] ログインページ `app/page.tsx` の実装
   - `LoginForm` を配置
   - 認証成功時に `/chat` へリダイレクト
-  - ログイン状態をlocalStorageに保存
-- [ ] 認証ガード（未ログイン時に `/chat` へ直接アクセスできないようにする）
+  - ログイン状態をhttpOnlyクッキーで管理
+- [x] 認証ガード（未ログイン時に `/chat` へ直接アクセスできないようにする）
 
 ---
 
