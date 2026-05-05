@@ -50,18 +50,18 @@
 
 ## Phase 4: チャットUI
 
-- [ ] `MessageBubble.tsx` コンポーネントの実装
+- [x] `MessageBubble.tsx` コンポーネントの実装
   - ユーザーとAIで吹き出しの色・向きを変える
   - Markdownテキストの表示対応（改行など）
-- [ ] `ChatInput.tsx` コンポーネントの実装
+- [x] `ChatInput.tsx` コンポーネントの実装
   - テキスト入力エリア（Enterで送信・Shift+Enterで改行）
   - 送信ボタン
   - 送信中はローディング表示・入力無効化
-- [ ] `ChatWindow.tsx` コンポーネントの実装
+- [x] `ChatWindow.tsx` コンポーネントの実装
   - メッセージ一覧の表示
   - 新しいメッセージが届いたら自動スクロール
   - ストリーミング受信・逐次表示
-- [ ] チャットページ `app/chat/page.tsx` の実装
+- [x] チャットページ `app/chat/page.tsx` の実装
   - localStorageから会話履歴を読み込む
   - 送信・受信のたびにlocalStorageへ保存
   - リセットボタン（会話履歴をクリア）
