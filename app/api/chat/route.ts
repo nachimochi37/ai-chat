@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from '@google/generative-ai'
+import Groq from 'groq-sdk'
 import { cookies } from 'next/headers'
 
 type Message = {
@@ -15,24 +15,19 @@ export async function POST(req: Request) {
 
   const { messages }: { messages: Message[] } = await req.json()
 
-  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' })
+  const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
-  // Gemini はhistoryと最後のメッセージを分けて渡す
-  const history = messages.slice(0, -1).map((m) => ({
-    role: m.role === 'assistant' ? ('model' as const) : ('user' as const),
-    parts: [{ text: m.content }],
-  }))
-  const lastMessage = messages[messages.length - 1].content
-
-  const chat = model.startChat({ history })
-  const result = await chat.sendMessageStream(lastMessage)
+  const stream = await groq.chat.completions.create({
+    model: 'llama-3.1-8b-instant',
+    messages,
+    stream: true,
+  })
 
   const encoder = new TextEncoder()
   const readable = new ReadableStream({
     async start(controller) {
-      for await (const chunk of result.stream) {
-        const text = chunk.text()
+      for await (const chunk of stream) {
+        const text = chunk.choices[0]?.delta?.content ?? ''
         if (text) {
           controller.enqueue(encoder.encode(text))
         }

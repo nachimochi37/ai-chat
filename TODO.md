@@ -108,7 +108,7 @@
 
 - [x] GitHubに最新コードをpush
 - [x] Vercelにプロジェクトをインポート・デプロイ成功
-- [ ] Vercelダッシュボードで環境変数を設定（要手動設定）
+- [x] Vercelに環境変数を設定済み
   - `GEMINI_API_KEY`
   - `AUTH_USERNAME`
   - `AUTH_PASSWORD`

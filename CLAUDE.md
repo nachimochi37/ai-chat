@@ -7,7 +7,7 @@
 ## 技術スタック
 
 - **フレームワーク**: Next.js (App Router) + TypeScript
-- **AIモデル**: Google Gemini 2.0 Flash（無料枠あり）
+- **AIモデル**: Groq / Llama 3.1 8B Instant（無料枠あり）
 - **スタイリング**: Tailwind CSS
 - **デプロイ**: Vercel
 - **DB**: なし
@@ -63,7 +63,7 @@ app/
 Vercelのダッシュボードおよびローカルの `.env.local` に以下を設定する。
 
 ```env
-GEMINI_API_KEY=AIza...         # Google Gemini APIキー
+GROQ_API_KEY=gsk_...           # Groq APIキー
 AUTH_USERNAME=your_username    # ログインID
 AUTH_PASSWORD=your_password    # ログインパスワード
 AUTH_TOKEN=random_secret       # セッショントークン（ランダムな文字列）
