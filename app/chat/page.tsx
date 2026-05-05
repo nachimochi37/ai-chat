@@ -82,22 +82,24 @@ export default function ChatPage() {
   }
 
   return (
-    <main className="flex flex-col h-screen bg-gray-50">
-      <header className="flex items-center justify-between px-4 py-3 border-b bg-white shadow-sm">
-        <h1 className="text-lg font-bold text-gray-800">AIチャット</h1>
+    <main className="flex flex-col h-screen">
+      <header className="flex items-center justify-between px-5 py-3 bg-gradient-to-r from-pink-400 to-violet-500 shadow-md">
+        <h1 className="text-lg font-extrabold text-white tracking-wide">
+          ✨ AIチャット
+        </h1>
         <div className="flex gap-2">
           <button
             onClick={handleReset}
             disabled={isLoading || messages.length === 0}
-            className="px-3 py-1 text-sm rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-40 transition-colors"
+            className="px-3 py-1 text-xs font-bold rounded-full bg-white/20 text-white hover:bg-white/30 disabled:opacity-40 transition-all"
           >
-            リセット
+            🔄 リセット
           </button>
           <button
             onClick={handleLogout}
-            className="px-3 py-1 text-sm rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+            className="px-3 py-1 text-xs font-bold rounded-full bg-white/20 text-white hover:bg-white/30 transition-all"
           >
-            ログアウト
+            👋 ログアウト
           </button>
         </div>
       </header>

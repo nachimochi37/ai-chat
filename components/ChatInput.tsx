@@ -32,7 +32,7 @@ export default function ChatInput({ onSend, disabled }: Props) {
   }
 
   return (
-    <div className="border-t bg-white px-4 py-3">
+    <div className="border-t border-pink-100 bg-white px-4 py-3">
       <div className="flex items-end gap-2 max-w-3xl mx-auto">
         <textarea
           ref={textareaRef}
@@ -42,12 +42,12 @@ export default function ChatInput({ onSend, disabled }: Props) {
           disabled={disabled}
           rows={1}
           placeholder="メッセージを入力... (Shift+Enterで改行)"
-          className="flex-1 resize-none rounded-2xl border border-gray-200 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 disabled:opacity-50 max-h-[120px] overflow-y-auto"
+          className="flex-1 resize-none rounded-full border-2 border-pink-200 px-5 py-2.5 text-sm focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-200 disabled:opacity-50 max-h-[120px] overflow-y-auto transition-all"
         />
         <button
           onClick={handleSend}
           disabled={disabled || !value.trim()}
-          className="flex-shrink-0 w-10 h-10 rounded-full bg-pink-400 text-white flex items-center justify-center hover:bg-pink-500 disabled:opacity-40 transition-colors"
+          className="flex-shrink-0 w-11 h-11 rounded-full bg-gradient-to-br from-pink-400 to-violet-500 text-white flex items-center justify-center hover:from-pink-500 hover:to-violet-600 disabled:opacity-40 transition-all shadow-md hover:shadow-lg active:scale-90"
           aria-label="送信"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">

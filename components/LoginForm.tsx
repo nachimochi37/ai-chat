@@ -44,7 +44,7 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
       <div>
-        <label htmlFor="username" className="block text-sm font-medium mb-1">
+        <label htmlFor="username" className="block text-sm font-bold text-gray-600 mb-1">
           ユーザー名
         </label>
         <input
@@ -52,13 +52,13 @@ export default function LoginForm() {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+          className="w-full border-2 border-pink-200 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-200 transition-all disabled:opacity-50"
           placeholder="ユーザー名を入力"
           disabled={loading}
         />
       </div>
       <div>
-        <label htmlFor="password" className="block text-sm font-medium mb-1">
+        <label htmlFor="password" className="block text-sm font-bold text-gray-600 mb-1">
           パスワード
         </label>
         <input
@@ -66,18 +66,22 @@ export default function LoginForm() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+          className="w-full border-2 border-pink-200 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-200 transition-all disabled:opacity-50"
           placeholder="パスワードを入力"
           disabled={loading}
         />
       </div>
-      {error && <p className="text-red-500 text-sm">{error}</p>}
+      {error && (
+        <p className="text-red-400 text-sm text-center bg-red-50 rounded-xl py-2 px-3">
+          {error}
+        </p>
+      )}
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-blue-500 text-white py-2 rounded-lg font-medium hover:bg-blue-600 disabled:opacity-50 transition-colors"
+        className="w-full bg-gradient-to-r from-pink-400 to-violet-400 text-white py-3 rounded-2xl font-bold hover:from-pink-500 hover:to-violet-500 disabled:opacity-50 transition-all shadow-md hover:shadow-lg active:scale-95"
       >
-        {loading ? 'ログイン中...' : 'ログイン'}
+        {loading ? '🌀 ログイン中...' : 'ログイン 🌸'}
       </button>
     </form>
   )
