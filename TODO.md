@@ -40,9 +40,9 @@
 
 ## Phase 3: チャットAPI
 
-- [ ] `/api/chat/route.ts` の実装
+- [x] `/api/chat/route.ts` の実装
   - OpenAI gpt-4o-mini へのプロキシ
-  - ストリーミング応答（Server-Sent Events）
+  - ストリーミング応答（ReadableStream）
   - 会話履歴（messages配列）を受け取って渡す
   - 認証チェック（未認証リクエストを弾く）
 
