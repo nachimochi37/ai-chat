@@ -1,10 +1,6 @@
 import OpenAI from 'openai'
 import { cookies } from 'next/headers'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
-
 type Message = {
   role: 'user' | 'assistant' | 'system'
   content: string
@@ -18,6 +14,11 @@ export async function POST(req: Request) {
   }
 
   const { messages }: { messages: Message[] } = await req.json()
+
+  // ビルド時に実行されないようハンドラー内で初期化
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  })
 
   const stream = await openai.chat.completions.create({
     model: 'gpt-4o-mini',
