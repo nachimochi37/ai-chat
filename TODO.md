@@ -106,13 +106,14 @@
 
 ## Phase 7: Vercelデプロイ
 
-- [ ] GitHubに最新コードをpush
-- [ ] Vercelにプロジェクトをインポート
-- [ ] Vercelダッシュボードで環境変数を設定
-  - `OPENAI_API_KEY`
+- [x] GitHubに最新コードをpush
+- [x] Vercelにプロジェクトをインポート・デプロイ成功
+- [ ] Vercelダッシュボードで環境変数を設定（要手動設定）
+  - `GEMINI_API_KEY`
   - `AUTH_USERNAME`
   - `AUTH_PASSWORD`
-- [ ] デプロイ実行・本番URLで動作確認
+  - `AUTH_TOKEN`
+- [x] デプロイ実行・本番URL確認: https://ai-chat-beryl-zeta.vercel.app
 
 ---
 
